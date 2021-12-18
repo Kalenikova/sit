@@ -20,15 +20,6 @@ const pool = new Pool({
 app.get("/", (req, res) => res.send("Simple REST API enabled with PostgreSQL"));
 
 app.get("/students", async (req, res)=> {
-  /*pool.query("select * from students", (err, qres) => {
-    if (err) {
-      console.log(err.stack);
-      res.send("Failed to get the data");
-    } else {
-      console.log(qres.rows);
-      res.json(qres.rows);
-    }
-  });*/
   const students = await pool.query('SELECT * FROM students');
   console.log(students.rows);
   res.json(students.rows);
